@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="#" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col-12">
+                        <h5 class="form-title"><span>Edit Student</span></h5>
+                    </div>
+
+                    {% include 'includes/messages.html' %}
+
+                    <div class="col-sm-11">
+                        <label>Department</label>
+                        <select class="form-control" name="department_name">
+                            <option>Select Department</option>
+                            {% for i in department %}
+                            <option value="{{i.id}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="text" class="form-control" name="subject_id" value="{{subject.id}}" hidden>
+                    </div>
+                    <br>
+                    <div class="col-sm-11">
+                        <div class="form-group">
+                            <label>Session Year</label>
+                            <input type="text" class="form-control" name="session_year"
+                                value="{% for i in subject %}{{i.session_year}}{% endfor %}">
+                        </div>
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="form-group">
+                            <label>Profile Pic</label>
+                            <input type="file" class="form-control" name="subject_pic">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Update Student</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
